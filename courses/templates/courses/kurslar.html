@@ -1,15 +1,17 @@
 {% extends 'layout.html' %}
 
 {% block page_title %}
-    hakkımızda
+    kurslar
 {% endblock %}
 
 {% block content %}
     <div class="container mt-3">
         <div class="row">
             <div class="col-12">
-                <h1>hakkımızda</h1>
+                <h1> {{ category }} </h1>
+                <p> {{ category_text }} </p>
             </div>
         </div>
     </div>
 {% endblock %}
+
