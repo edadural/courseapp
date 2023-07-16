@@ -9,19 +9,15 @@
         <div class="row">
             <div class="col-3">
 
-                {% comment %} {% include 'courses/partials/_categories.html' %} {% endcomment %}
+                {% include 'courses/partials/_categories.html' %}
 
-                <div class="list-group">
-
-                    {% for category in categories %}
-                        <a href="{% url 'courses_by_category' category %}" class="list-group-item list-group-item-action">{{ category }}</a>
-                    {% endfor %}
-                    
-                </div>
-
-                
             </div>
             <div class="col-9">
+                {% for course in courses %}
+                    
+                    {% include 'courses/partials/_course.html' %}
+
+                {% endfor %}
             </div>
         </div>
     </div>

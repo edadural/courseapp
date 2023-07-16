@@ -1,3 +1,4 @@
+from datetime import date, datetime
 from django.http import HttpResponse, HttpResponseNotFound, HttpResponseRedirect
 from django.shortcuts import redirect, render
 from django.urls import reverse
@@ -8,11 +9,57 @@ data = {
     "mobil":"mobil kategorisine ait kurslar",
 }
 
+db = {
+    "courses": [
+        {
+            "title":"javascript kursu",
+            "description":"javascript kurs açıklaması",
+            "imageUrl":"https://img-c.udemycdn.com/course/750x422/1662526_fc1c_3.jpg",
+            "slug":"javascript-kursu",
+            "date":datetime.now(),
+            "isActive": True,
+            "isUpdated": False
+        },
+        {
+            "title":"python kursu",
+            "description":"python kurs açıklaması",
+            "imageUrl":"https://img-c.udemycdn.com/course/750x422/2463492_8344_3.jpg",
+            "slug":"python-kursu",
+            "date":date(2022,9,10),
+            "isActive": False,
+            "isUpdated": False
+        },
+        {
+            "title":"web geliştirme kursu",
+            "description":"web geliştirme kurs açıklaması",
+            "imageUrl":"https://img-c.udemycdn.com/course/750x422/1258436_2dc3_4.jpg",
+            "slug":"web-gelistirme-kursu",
+            "date":date(2022,8,10),
+            "isActive": True,
+            "isUpdated": True
+        }
+    ],
+    "categories":[
+        { "id":1, "name":"programlama", "slug":"programlama"},
+        { "id":2, "name":"web geliştirme", "slug":"web-gelistirme"},
+        { "id":3, "name":"mobil uygulamalar", "slug":"mobil-uygulamalar"},
+    ]
+}
+
+
+
 def index(request):
-    category_list = list(data.keys())
+    # list comphension
+    kurslar = [course for course in db["courses"] if course["isActive"]==True]
+    kategoriler = db["categories"]
+
+    # for kurs in db["courses"]:
+    #     if kurs["isActive"] == True:
+    #         kurslar.append(kurs)
 
     return render(request, 'courses/index.html', {
-        'categories': category_list
+        'categories': kategoriler,
+        'courses': kurslar
     })
 
 def details(request, kurs_adi):
