@@ -15,7 +15,7 @@ class Course(models.Model):
     date = models.DateField(auto_now=True)
     isActive = models.BooleanField()
     slug = models.SlugField(default="", blank=True, null=False, unique=True, db_index=True)  # varolan kayıtlar için "", blank ilgili formda bos deger girmek, formdaki slug bilgisi editlenmesin, zorunlu alan false, unique benzersiz, db primary key icin aktif edilmesi
-    category = models.ForeignKey(Category, default=1, on_delete=models.CASCADE, related_name="kurslar")  # cascade: bir kategori silindigi zaman ona ait olan kurslar da silinir
+    categories = models.ManyToManyField(Category)
 
     def __str__(self):
         return f"{self.title}"
