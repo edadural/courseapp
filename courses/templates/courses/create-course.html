@@ -21,30 +21,7 @@
                 {% endif %}
                 <form action="{% url 'create_course' %}" method="POST">
                     {% csrf_token %}
-                    <div class="mb-3">
-                        <label for="title" class="form-label">Title</label>
-                        <input type="text" name="title" class="form-control">
-                    </div>
-                    <div class="mb-3">
-                        <label for="description" class="form-label">Description</label>
-                        <textarea name="description" class="form-control"></textarea>
-                    </div>
-                    <div class="mb-3">
-                        <label for="imageUrl" class="form-label">imageUrl</label>
-                        <input type="text" name="imageUrl" class="form-control">
-                    </div>
-                    <div class="mb-3">
-                        <label for="slug" class="form-label">slug</label>
-                        <input type="text" name="slug" class="form-control">
-                    </div>
-                    <div class="form-check mb-3">
-                        <input type="checkbox" name="isActive" class="form-check-input">
-                        <label for="isActive" class="form-check-label">isActive</label>
-                    </div>
-                    <div class="form-check mb-3">
-                        <input type="checkbox" name="isHome" class="form-check-input">
-                        <label for="isHome" class="form-check-label">isHome</label>
-                    </div>
+                    {{ form.as_p }}
                     <button class="btn btn-primary" type="submit">Kaydet</button>
                 </form>
             </div>
