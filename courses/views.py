@@ -65,24 +65,12 @@ def details(request, slug):
 
     return render(request, 'courses/details.html', context)
 
-def getCoursesByCategory(request, category_name):
-    try:
-        category_text = data[category_name]    
-        return render(request, 'courses/kurslar.html', {
-            'category': category_name,
-            'category_text': category_text
-        })
-    except:
-        return HttpResponseNotFound("<h1>yanlış kategori seçimi<h1>")
+def getCoursesByCategory(request, slug):
+    kurslar = Course.objects.filter(category__slug=slug, isActive=True)   # aktif olan ve kategorinin slugı gonderilen slugla eslesiyosa kurs bilgileri gelir
+    kategoriler = Category.objects.all()
 
-def getCoursesByCategoryId(request, category_id):
-    category_list = list(data.keys())
-
-    if(category_id > len(category_list)):
-        return HttpResponseNotFound("yanlış kategori seçimi")
-    
-    category_name = category_list[category_id - 1]
-
-    redirect_url = reverse('courses_by_category', args=[category_name])
-
-    return redirect(redirect_url)
+    return render(request, 'courses/index.html', {
+        'categories': kategoriler,
+        'courses': kurslar,
+        'seciliKategori': slug
+    })
