@@ -13,7 +13,8 @@ class Course(models.Model):
     description = models.TextField()
     imageUrl = models.CharField(max_length=50, blank=False)
     date = models.DateField(auto_now=True)
-    isActive = models.BooleanField()
+    isActive = models.BooleanField(default=False)
+    isHome = models.BooleanField(default=False)
     slug = models.SlugField(default="", blank=True, null=False, unique=True, db_index=True)  # varolan kayıtlar için "", blank ilgili formda bos deger girmek, formdaki slug bilgisi editlenmesin, zorunlu alan false, unique benzersiz, db primary key icin aktif edilmesi
     categories = models.ManyToManyField(Category)
 
