@@ -20,14 +20,14 @@
                             <th style="width: 120px;"></th>
                             <th>Title</th>
                             <th>Slug</th>
-                            <th style="width: 70px;"></th>
+                            <th style="width: 115px;"></th>
                         </tr>
                     </thead>
                     <tbody>
                         {% for course in courses %}
                             <tr>
                                 <td>
-                                    <img src="{% static 'courses/img/'|add:course.imageUrl %}" class="img-fluid">
+                                    <img src="{{ course.image.url }}" class="img-fluid">
                                 </td>
                                 <td>{{ course.title }}</td>
                                 <td>{{ course.slug }}</td>

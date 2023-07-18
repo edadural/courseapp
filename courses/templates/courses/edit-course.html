@@ -14,7 +14,7 @@
     <div class="container mt-3">
         <div class="row">
             <div class="col-12">
-                <form method="POST" novalidate>
+                <form method="POST" novalidate enctype="multipart/form-data">
                     {% csrf_token %}
 
                     {% for field in form %}

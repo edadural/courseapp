@@ -16,7 +16,7 @@ from courses.models import Course
 class CourseCreateForm(forms.ModelForm):
     class Meta:
         model = Course
-        fields = ('title', 'description','imageUrl','slug')
+        fields = ('title', 'description','image','slug')
         labels = {
             'title': "kurs başlığı",
             'description': "açıklama"
@@ -24,7 +24,6 @@ class CourseCreateForm(forms.ModelForm):
         widgets = {
             "title": forms.TextInput(attrs={"class":"form-control"}),
             "description": forms.Textarea(attrs={"class":"form-control"}),
-            "imageUrl": forms.TextInput(attrs={"class":"form-control"}),
             "slug": forms.TextInput(attrs={"class":"form-control"}),
         }
         error_messages = {
@@ -40,7 +39,7 @@ class CourseCreateForm(forms.ModelForm):
 class CourseEditForm(forms.ModelForm):
     class Meta:
         model = Course
-        fields = ('title', 'description','imageUrl','slug','categories', 'isActive')
+        fields = ('title', 'description','image','slug','categories', 'isActive')
         labels = {
             'title': "kurs başlığı",
             'description': "açıklama"
@@ -48,7 +47,6 @@ class CourseEditForm(forms.ModelForm):
         widgets = {
             "title": forms.TextInput(attrs={"class":"form-control"}),
             "description": forms.Textarea(attrs={"class":"form-control"}),
-            "imageUrl": forms.TextInput(attrs={"class":"form-control"}),
             "slug": forms.TextInput(attrs={"class":"form-control"}),
             "categories": forms.SelectMultiple(attrs={"class":"form-control"})
         }
@@ -61,3 +59,6 @@ class CourseEditForm(forms.ModelForm):
                 "required": "Kurs açıklaması gereklidir."
             }
         }
+
+class UploadForm(forms.Form):
+    image = forms.ImageField()
