@@ -1,0 +1,49 @@
+{% extends 'layout.html' %}
+
+{% load static %}
+
+{% block css_files %}
+    <link rel="stylesheet" href="{% static 'courses/css/style.css' %}">
+{% endblock %}
+
+{% block page_title %}
+
+{% endblock %}
+
+{% block content %}
+    <div class="container mt-3">
+        <div class="row">
+            <div class="col-12">
+                <table class="table table-sm table-bordered">
+                    <thead>
+                        <tr>
+                            <th style="width: 120px;"></th>
+                            <th>Title</th>
+                            <th>Slug</th>
+                            <th style="width: 70px;"></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for course in courses %}
+                            <tr>
+                                <td>
+                                    <img src="{% static 'courses/img/'|add:course.imageUrl %}" class="img-fluid">
+                                </td>
+                                <td>{{ course.title }}</td>
+                                <td>{{ course.slug }}</td>
+                                <td>
+                                    <a href="{% url 'course_edit' course.id %}" class="btn btn-primary btn-sm">güncelle</a>
+                                    <a href="{% url 'course_delete' course.id %}" class="btn btn-danger btn-sm">sil</a>
+                                </td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block js_files %}
+    <script src="{% static 'courses/js/script.js' %}"></script>
+{% endblock  %}
