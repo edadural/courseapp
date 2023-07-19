@@ -1,5 +1,6 @@
 from django.db import models
 from django.utils.text import slugify
+from ckeditor.fields import RichTextField
     
 class Category(models.Model):
     name = models.CharField(max_length=40)
@@ -10,7 +11,8 @@ class Category(models.Model):
     
 class Course(models.Model):
     title = models.CharField(max_length=50)
-    description = models.TextField()
+    subtitle =models.CharField(max_length=100, default="")
+    description = RichTextField()
     image = models.ImageField(upload_to="images", default="")
     date = models.DateField(auto_now=True)
     isActive = models.BooleanField(default=False)
