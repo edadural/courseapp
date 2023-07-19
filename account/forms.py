@@ -18,6 +18,6 @@ class LoginUserForm(AuthenticationForm):
 
         return username
     
-    def confirm_login_allowed(self, user):
-        if user.username.startswith("s"):
-            raise forms.ValidationError("bu kullanıcı adı ile login olamazsınız")
+    # def confirm_login_allowed(self, user):
+    #     if user.username.startswith("s"):
+    #         raise forms.ValidationError("bu kullanıcı adı ile login olamazsınız")
